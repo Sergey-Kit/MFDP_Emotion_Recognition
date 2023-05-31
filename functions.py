@@ -64,7 +64,7 @@ def save_img(im, img_name, ext):
         os.makedirs(save_path)
 
     #im.save(f'{img_name}.{ext}', 'JPEG')
-    cv2.imwrite(os.path.join(save_path , f'{img_name}.{ext}'), im)
+    cv2.imwrite(os.path.join(save_path , f'{img_name}{ext}'), im)
 
 def excel_parse():
     df = read_excel()

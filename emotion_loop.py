@@ -17,6 +17,8 @@ import argparse
 import functions
 from PIL import Image
 import requests
+import matplotlib.pyplot as plt
+from retinaface import RetinaFace
 
 result = ["Surprise","Fear","Disgust","Happiness","Sadness","Anger","Neutral"]
 
@@ -57,32 +59,51 @@ def main():
     time1=time.time()
 
     url = df['url_server'][i]
-    #print(url)
     req = requests.get(url, stream=True).raw.read()
     arr = np.frombuffer(req, np.uint8)
     im = cv2.imdecode(arr, cv2.IMREAD_COLOR)
-    #im = Image.open(requests.get(url, stream=True).raw)
     
+    # Save image
     f_name, ext = os.path.splitext(url)
     img_name = f_name.split('/')[-1]
-
     functions.save_img(im, img_name, ext)
 
-    image = np.array(im)
-    #print(len(image))
-    image = image[:, :, ::-1]
-    image_tensor = preprocess_transform(image)
-    tensor = Variable(torch.unsqueeze(image_tensor, dim=0).float(), requires_grad=False)
-    time2=time.time()
-    _, outputs = res18(tensor)
-    _, predicts = torch.max(outputs, 1)
-    #print(outputs)
-    print(result[int(predicts.cpu().data)])
+    try:
+      # To use with RetinaFace
+      image = RetinaFace.extract_faces(
+        img_path = os.path.join(
+          functions.BASE_SAVE_PATH ,f'{img_name}{ext}'),
+          align = True
+        )
+      print(len(image))
+      image = image[0]
 
-    df.loc[i, 'pred'] = result[int(predicts.cpu().data)]
-    #print(df['pred'])
+      # Show img
+      #plt.imshow(image)
+      #plt.show()
+
+      # For reading straight from cv2.imdecode
+      #image = np.array(im)
+      #print(len(image))
+      #image = image[:, :, ::-1]
+
+      image_tensor = preprocess_transform(image)
+      tensor = Variable(torch.unsqueeze(image_tensor, dim=0).float(), requires_grad=False)
+      time2=time.time()
+      _, outputs = res18(tensor)
+      _, predicts = torch.max(outputs, 1)
+      print(result[int(predicts.cpu().data)])
+
+      df.loc[i, 'pred'] = result[int(predicts.cpu().data)]
+    except IndexError:
+      print("Error")
+    except KeyboardInterrupt:
+      print("Error")
+
+  print(df['pred'])
+
   #If you want to save the results
-  #df.to_excel('1140Faces_WIKI2020_on_emotioNet.xlsx')
+  #df.to_excel('1140Faces_WIKI2020_on_emotioNet_v2.xlsx')
 
 if __name__ == "__main__":
   main()
