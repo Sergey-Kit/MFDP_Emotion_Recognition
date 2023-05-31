@@ -1,3 +1,5 @@
+Обновление 31.05.23 : Добавлено выделение баундинг-бокса лица и его поворот, масштабирование и приведение координа с помощью RetinaFace
+
 # MFDP "Определение эмоций клиента казино"
 
 Для погружения в тему была использованная предобученая NN ResNet18. 
@@ -20,10 +22,23 @@
 ```   
 Потоком сохраняются изображения из интернета и валидируются моделью. Результат сохраняется в Excel-файл.
 
-## Ркзультаты
+```
+    # run the simple inference script(emotion)
+    Download the emoticon model into checkpoint file
+    CUDA_VISIBLE_DEVICE=0 python emotion.py --img ./img/absolute.jpg
+``` 
+Для валидации одного изображения
+![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/absolute.jpg)
+![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/power.jpg)
 
-На данном этапе получил Confusion Matrix со слабыми метриками. Файл metrics.ipynb
+## Результаты
 
+На данном этапе получил Confusion Matrix со приемлимыми метриками после добавления RetinaFace. 
+Файл metrics.ipynb с Confusion Matrix
+
+Было:
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results.jpg)
+Стало с RetinaFace:
+![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results_v2.jpg)
+Следующим этапом будет оборачивание модели в докер образ и презентация как веб-сервиса
 
-Следующим этапом будет преобработка фото. Вырезание лица, удаление лишних данных с фото.
