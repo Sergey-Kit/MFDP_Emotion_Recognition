@@ -28,7 +28,9 @@
     CUDA_VISIBLE_DEVICE=0 python emotion.py --img ./img/absolute.jpg
 ``` 
 Для валидации одного изображения
-![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/absolute.jpg)
+
+<img src="https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/absolute.jpg" width=50% height=50%>
+
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/power.jpg)
 
 ## Результаты
@@ -38,7 +40,9 @@
 
 Было:
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results.jpg)
+
 Стало с RetinaFace:
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results_v2.jpg)
+
 Следующим этапом будет оборачивание модели в докер образ и презентация как веб-сервиса
 
