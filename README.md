@@ -10,9 +10,7 @@
 ```
     # install requirements
     First install Anaconda3, python 3.7,and then:
-    pip install numpy opencv-python 
-    pip install torch==1.4.0
-    pip install torchvision==0.5.0
+    pip install requirements.txt
     Download the emoticon model (the angle model is already in the code):
     [https://pan.baidu.com/s/1oxznkRcP5w8lzYMAjj87-w],accesscode:WIKI
     
