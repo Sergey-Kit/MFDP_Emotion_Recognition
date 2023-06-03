@@ -47,12 +47,12 @@ def main(args):
     time1=time.time()
 
     # To use with RetinaFace
-    image = RetinaFace.extract_faces(img_path = args.img, align = True)
+    image = RetinaFace.extract_faces(img_path = args.photo, align = True)
     image = image[0]
     
     # Show img
-    plt.imshow(image)
-    plt.show()
+    #plt.imshow(image)
+    #plt.show()
 
     # To use without RetinaFace
     #image = cv2.imread(args.img)
@@ -67,7 +67,7 @@ def main(args):
 
 def parse_args():
   parser = argparse.ArgumentParser(description='Testing')
-  parser.add_argument('--img',default="./img/suripse.jpg",type=str)
+  parser.add_argument('photo',help='path to the photo',type=str)
   args = parser.parse_args()
   return args
 
