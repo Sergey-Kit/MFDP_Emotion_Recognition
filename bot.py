@@ -5,12 +5,12 @@ import io
 import os
 from PIL import Image
 
-bot = telebot.TeleBot('6027285377:AAGdxHHwQAz-aBCmETy8GnDtfwumxWEckUM')
+bot = telebot.TeleBot()# Введите токен своего бота ) 
 
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    bot.send_message(message.chat.id, 'Привет, отец!')
+    bot.send_message(message.chat.id, 'Отправьте фото клиента казино на обработку')
 
 
 @bot.message_handler(content_types=['photo'])
@@ -46,7 +46,32 @@ def handle_photo(message):
     #result = os.popen('python emotion.py ' + file_name).read()  
     
     # отправляем ответное сообщение с результатом
-    bot.send_message(message.chat.id, result.stdout.decode('utf-8'))
+    
+    excitement = {
+        "Surprise\n": "Удивление",
+        "Happiness\n": "Счастье",
+        "Anger\n": "Злость",
+        "Fear\n": "Страх",
+        "Disgust\n": "Отвращение",
+        "Neutral\n": "Нейральная",
+        "Sadness\n": "Грусть"
+    }
+
+    excitement_levels = {
+        "Surprise\n": "Азарт высокий!",
+        "Happiness\n": "Азарт высокий!",
+        "Anger\n": "Азарт высокий!",
+        "Fear\n": "Азарт низкий!",
+        "Disgust\n": "Азарт низкий!",
+        "Neutral\n": "Азарт низкий!",
+        "Sadness\n": "Азарт низкий!"
+    }
+
+    output = result.stdout.decode('utf-8')
+    bot.send_message(message.chat.id, f'Эмоция: {excitement[output]}')
+
+    if output in excitement_levels:
+        bot.send_message(message.chat.id, excitement_levels[output])
 
     # отправляем ответное сообщение
     bot.send_message(message.chat.id, 'Фотография получена и обработана')
