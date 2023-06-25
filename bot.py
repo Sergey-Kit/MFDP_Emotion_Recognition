@@ -5,7 +5,7 @@ import io
 import os
 from PIL import Image
 
-bot = telebot.TeleBot()# Введите токен своего бота ) 
+bot = telebot.TeleBot('6027285377:AAGdxHHwQAz-aBCmETy8GnDtfwumxWEckUM')# Введите токен своего бота ) 
 
 
 @bot.message_handler(commands=['start'])
