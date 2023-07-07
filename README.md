@@ -2,6 +2,8 @@
 
 Обновление 03.06.23 : Запущен Telegram бот @Emotion_Recog_Bot. Отправляете ему фото с лицом человека, получаете эмоцию на лице и наличие азарта.
 
+Обновление 06.07.23 : Добавлена обертка в Docker Telegram бота @Emotion_Recog_Bot.
+
 # MFDP "Определение эмоций клиента казино"
 
 Для погружения в тему была использованная предобученая NN ResNet18. 
@@ -10,24 +12,14 @@
 
 ## Demo
 ```
-    # install requirements
-    First install Anaconda3, python 3.7,and then:
-    pip install requirements.txt
-    Download the emoticon model (the angle model is already in the code):
-    [https://pan.baidu.com/s/1oxznkRcP5w8lzYMAjj87-w],accesscode:WIKI
-    
-    # run the simple inference script(emotion_loop)
-    Download the emoticon model into checkpoint file
-    CUDA_VISIBLE_DEVICE=0 python emotion_loop.py
-```   
-Потоком сохраняются изображения из интернета и валидируются моделью. Результат сохраняется в Excel-файл.
+    # Запуск бота
+    #Введите в консоли Linux
+    sudo service docker start
+    docker build -t <название бота> .
+    docker run --env BOT_TOKEN=<токен вашего бота> <название бота> .
 
-```
-    # run the simple inference script(emotion)
-    Download the emoticon model into checkpoint file
-    CUDA_VISIBLE_DEVICE=0 python emotion.py --img ./img/absolute.jpg
-``` 
-Для валидации одного изображения
+    # Бот запущен! Отправьте ему фото в телеграм.
+```   
 
 <img src="https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/absolute.jpg" width=30% height=30%>
 
@@ -44,5 +36,5 @@
 Стало с RetinaFace:
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results_v2.jpg)
 
-Следующим этапом будет оборачивание модели в докер образ и презентация как веб-сервиса
+Следующим этапом обучение собственной нейросети.
 

@@ -45,9 +45,8 @@ def main(args):
 
   for i in [0]:
     time1=time.time()
-
     # To use with RetinaFace
-    image = RetinaFace.extract_faces(img_path = args.photo, align = True)
+    image = RetinaFace.extract_faces(img_path = args.photo, align = True) #
     image = image[0]
     
     # Show img
@@ -67,7 +66,7 @@ def main(args):
 
 def parse_args():
   parser = argparse.ArgumentParser(description='Testing')
-  parser.add_argument('photo',help='path to the photo',type=str)
+  parser.add_argument('--photo',help='path to the photo',type=str)
   args = parser.parse_args()
   return args
 
