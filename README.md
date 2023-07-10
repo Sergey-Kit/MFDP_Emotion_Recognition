@@ -1,10 +1,12 @@
+# MFDP "Определение эмоций клиента казино"
+
+Данная ветка включает в себя реализацию проекта в виде бота в Telegram.
+
 Обновление 31.05.23 : Добавлено выделение баундинг-бокса лица и его поворот, масштабирование и приведение координа с помощью RetinaFace
 
 Обновление 03.06.23 : Запущен Telegram бот @Emotion_Recog_Bot. Отправляете ему фото с лицом человека, получаете эмоцию на лице и наличие азарта.
 
 Обновление 06.07.23 : Добавлена обертка в Docker Telegram бота @Emotion_Recog_Bot.
-
-# MFDP "Определение эмоций клиента казино"
 
 Для погружения в тему была использованная предобученая NN ResNet18. 
 Эту обученную модель для определения 7 эмоций на лицах взял тут (https://github.com/WIKI2020/FacePose_pytorch). 
@@ -25,16 +27,6 @@
 
 ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/power.jpg)
 
-## Результаты
-
-На данном этапе получил Confusion Matrix со приемлимыми метриками после добавления RetinaFace. 
-Файл metrics.ipynb с Confusion Matrix
-
-Было:
-         ![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results.jpg)
-
-Стало с RetinaFace:
-![image](https://github.com/Sergey-Kit/MFDP_Emotion_Recognition/blob/main/img/results_v2.jpg)
 
 Следующим этапом обучение собственной нейросети.
 
