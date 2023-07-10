@@ -10,7 +10,7 @@
 ## Demo
 ```
     # install requirements
-    First install Anaconda3, python 3.7,and then:
+    First install python 3.7,and then:
     pip install requirements.txt
     Download the emoticon model (the angle model is already in the code):
     [https://pan.baidu.com/s/1oxznkRcP5w8lzYMAjj87-w],accesscode:WIKI
